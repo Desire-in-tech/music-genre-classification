@@ -112,7 +112,8 @@ def prepare_modeling_tracks(
         genres = sorted(group.genre.astype(str).unique().tolist())
         if len(genres) > 1:
             action = "excluded_conflicting_labels"
-            keep_ids.update()
+            # Keep none of the rows in a conflicting-label exact-duplicate group.
+            pass
         else:
             keep_ids.add(ids[0])
             action = "kept_first_removed_exact_copies" if len(ids) > 1 else "unique"
