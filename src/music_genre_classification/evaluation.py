@@ -12,7 +12,8 @@ def evaluate_predictions(y_true,y_pred,labels):
       "confusion_matrix":confusion_matrix(y_true,y_pred,labels=labels).tolist(),"labels":list(labels)}
 
 def evaluate_classifier(model,X_test,y_test,*,labels=None):
-    return evaluate_predictions(y_test,model.predict(X_test),labels or sorted(set(y_test)))
+    class_labels = labels if labels is not None else sorted(set(y_test))
+    return evaluate_predictions(y_test,model.predict(X_test),class_labels)
 
 def feature_matrix(features):
     required={"track_id","genre"}; missing=required.difference(features.columns)
