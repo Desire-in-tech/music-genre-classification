@@ -221,3 +221,26 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# Music genre classification: local data and generated artifacts
+data/
+datasets/
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.au
+*.npy
+*.npz
+*.pkl
+*.joblib
+*.h5
+*.keras
+*.pt
+*.pth
+cache/
+artifacts/
+models/
+outputs/
+!reports/.gitkeep

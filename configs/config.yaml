@@ -1,0 +1,31 @@
+project:
+  name: music-genre-classification
+  random_seed: 42
+
+dataset:
+  dataset_root: data
+  audio_subdirectory: genres_original
+  sample_rate: 22050
+  duration_seconds: 30
+  expected_genres: [blues, classical, country, disco, hiphop, jazz, metal, pop, reggae, rock]
+
+split:
+  test_size: 0.20
+  validation_size: 0.20  # fraction of the remaining development set
+  stratify: true
+
+features:
+  n_mfcc: 20
+  n_mels: 128
+  n_fft: 2048
+  hop_length: 1024
+  target_frames: 256
+  cache_directory: cache
+
+training:
+  random_seed: 42
+  primary_metric: f1_macro
+  classical_models: [svm_rbf, random_forest, extra_trees]
+  cnn_epochs: 30
+  cnn_batch_size: 16
+  cnn_early_stopping_patience: 5
