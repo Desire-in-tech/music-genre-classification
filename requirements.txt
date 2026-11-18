@@ -1,0 +1,14 @@
+numpy>=1.24,<3
+pandas>=2.0
+scikit-learn>=1.3
+librosa>=0.10.2
+matplotlib>=3.7
+seaborn>=0.13
+soundfile>=0.12
+PyYAML>=6.0
+joblib>=1.3
+pytest>=7.4
+jupyter>=1.0
+
+# CNN stack: install separately in Colab when running the image-based experiment.
+# tensorflow>=2.15

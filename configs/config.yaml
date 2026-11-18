@@ -1,0 +1,35 @@
+project:
+  name: music-genre-classification
+  random_seed: 42
+
+dataset:
+  # Directory containing genres_original/; may be overridden by MUSIC_DATA_DIR.
+  dataset_root: data
+  audio_subdirectory: genres_original
+  sample_rate: 22050
+  expected_genres:
+    - blues
+    - classical
+    - country
+    - disco
+    - hiphop
+    - jazz
+    - metal
+    - pop
+    - reggae
+    - rock
+
+split:
+  test_size: 0.20
+  validation_size: 0.20
+  stratify: true
+
+features:
+  n_mfcc: 20
+  n_mels: 128
+  duration_seconds: 30
+  cache_directory: cache
+
+training:
+  primary_metric: f1_macro
+  n_jobs: -1
