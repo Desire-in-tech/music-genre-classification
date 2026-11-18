@@ -29,7 +29,7 @@ GTZAN is a relatively small, historically used benchmark with known data-quality
 
 ## Experimental protocol
 
-- Split by **original recording before feature extraction or model training**. No segments or spectrogram patches from one recording may appear in multiple splits.
+- Audit exact SHA-256 duplicates before splitting. Keep one representative of same-label byte-identical recordings and quarantine every conflicting-label duplicate group; then split by unique original recording. This prevents exact-content leakage, though near-duplicates and artist overlap remain possible.
 - Use one fixed stratified train/validation/test manifest for both model families (seed 42).
 - Fit imputation/scaling only on training data; select models using validation macro-F1.
 - Refit the selected tabular estimator on train + validation, then evaluate on the held-out test set. CNN early stopping uses validation only.
