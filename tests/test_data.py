@@ -24,3 +24,8 @@ def test_split_tracks_rejects_duplicate_recordings():
     tracks.loc[1, "track_id"] = tracks.loc[0, "track_id"]
     with pytest.raises(ValueError, match="unique"):
         split_tracks(tracks)
+
+
+def test_split_tracks_rejects_too_few_examples_per_class():
+    with pytest.raises(ValueError, match="at least 3"):
+        split_tracks(_tracks(per_class=2))
