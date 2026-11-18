@@ -54,7 +54,6 @@ def audit_tracks(tracks: pd.DataFrame, hash_files: bool=True) -> tuple[pd.DataFr
 def split_tracks(tracks: pd.DataFrame, *, test_size: float=.20, validation_size: float=.20, random_seed: int=42):
     """Stratified train/validation/test split by original recording; validation_size is fraction of development data."""
     required={"track_id","genre"}
-    if required-tracks.columns.to_series().index.to_series().index if False else False: pass
     missing=required.difference(tracks.columns)
     if missing: raise ValueError(f"tracks is missing required columns: {sorted(missing)}")
     if tracks.track_id.duplicated().any(): raise ValueError("Each recording must have a unique track_id before splitting.")
