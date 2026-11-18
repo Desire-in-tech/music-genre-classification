@@ -69,6 +69,19 @@ pytest -q
 - [x] Multiclass evaluation helpers
 - [x] End-to-end Colab notebook for both approaches
 - [x] Unit tests and GitHub Actions test workflow
-- [ ] Execute notebook on the actual Kaggle dataset and review saved outputs/results
+- [x] Execute notebook on the actual Kaggle dataset and review saved outputs/results
 
-No model performance numbers are claimed before the notebook has been run on the dataset.
+## Latest recorded experiment
+
+The committed Colab notebook was executed end to end on the Kaggle GTZAN collection. All 13 code cells have saved outputs, with no recorded cell errors.
+
+| Experiment | Test accuracy | Test macro-F1 |
+|---|---:|---:|
+| Extra Trees (selected tabular baseline) | 72.86% | 72.36% |
+| Log-Mel spectrogram CNN | 64.82% | 63.62% |
+
+The dataset audit found 1,000 original recordings and no unreadable files. Exact byte-identical duplicate handling retained 992 unique recordings: six same-label duplicate copies were removed and the two recordings in one conflicting-label group were quarantined. The shared stratified split contains 634 training, 159 validation and 199 test recordings.
+
+The CNN's earlier single-class prediction failure was corrected. Its final test predictions cover all ten genres. Extra Trees remains the stronger model on this split; the CNN is retained as the deep-learning comparison rather than presented as the best-performing approach.
+
+These are results from one fixed split and one dataset mirror, not a claim of broad generalization. GTZAN's known limitations remain relevant: the audit detects exact byte-level duplicates, but does not rule out near-duplicates, alternate encodings, artist overlap or other benchmark biases. The notebook saves detailed metrics, predictions, duplicate-resolution and split reports, plus trained model files, in the Colab runtime under `artifacts/`; generated data and model artifacts are intentionally not committed.
